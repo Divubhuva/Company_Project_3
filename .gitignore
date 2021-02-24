@@ -2,4 +2,4 @@
 ./bin/*
 .iml
 .classpath
-.idea
+.idea/*
