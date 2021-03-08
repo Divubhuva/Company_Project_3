@@ -10,7 +10,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("PayrollView.fxml"));
-			Scene scene = new Scene(root,600,400);
+			final int width = 600;
+			final int height = 400;
+			Scene scene = new Scene(root,width,height);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
