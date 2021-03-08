@@ -1,4 +1,4 @@
-package Proj2;
+
 
 /**
  * This class extends the Fulltime class and includes specific data and operations in regards to a full-time employee with a management role.

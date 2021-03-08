@@ -1,4 +1,4 @@
-package Proj2;
+
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -32,7 +32,7 @@ public class PayrollProcessing
     {
         System.out.print("Payroll Processing starts.\n");
         Scanner src = new Scanner(System.in);
-
+        
         while(true)
         {
             String inputFromUser = src.nextLine();

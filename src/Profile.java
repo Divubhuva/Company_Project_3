@@ -1,4 +1,4 @@
-package Proj2;
+
 
 /**
  * This class defines the profile of an employee and encapsulates the data fields and methods of an employee.

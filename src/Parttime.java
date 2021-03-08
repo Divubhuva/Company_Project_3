@@ -1,4 +1,3 @@
-package Proj2;
 
 /**
  * This class extends the Employee class and includes specific data and operations in regards to a part-time employee..
