@@ -63,28 +63,28 @@
                                     <RadioButton fx:id="ECERadio" mnemonicParsing="false" text="ECE" toggleGroup="$Department" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Hired" wrappingWidth="65.33672714233398" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                     <DatePicker fx:id="SelectedDate" prefHeight="26.0" prefWidth="257.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2" />
-                                    <RadioButton fx:id="FullTimeRadio" mnemonicParsing="false" selected="true" text="Full Time" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                    <RadioButton fx:id="FullTimeRadio" mnemonicParsing="false" onAction="#FullTimeRadioSelected" selected="true" text="Full Time" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="EmployeeType" />
                                        </toggleGroup></RadioButton>
-                                    <RadioButton fx:id="PartTimeRadio" mnemonicParsing="false" text="Part Time" toggleGroup="$EmployeeType" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                    <RadioButton fx:id="ManagementRadio" mnemonicParsing="false" prefHeight="18.0" prefWidth="99.0" text="Management" toggleGroup="$EmployeeType" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <RadioButton fx:id="PartTimeRadio" mnemonicParsing="false" onAction="#PartTimeRadioSelected" text="Part Time" toggleGroup="$EmployeeType" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <RadioButton fx:id="ManagementRadio" mnemonicParsing="false" onAction="#ManagementRadioSelected" prefHeight="18.0" prefWidth="99.0" text="Management" toggleGroup="$EmployeeType" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                     <Text fx:id="AnualSalaryText" strokeType="OUTSIDE" strokeWidth="0.0" text="Anual Salary" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                                     <TextField fx:id="AnualSalary" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-                                    <Text fx:id="HourlyWorkText" strokeType="OUTSIDE" strokeWidth="0.0" text="Hours Worked" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                                    <TextField fx:id="HourlyWork" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                    <Text fx:id="RateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Rate" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                                    <TextField fx:id="Rate" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                                    <RadioButton fx:id="ManagerRadio" mnemonicParsing="false" prefHeight="18.0" prefWidth="82.0" selected="true" text="Manager" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                    <Text fx:id="HourlyWorkText" disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Hours Worked" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                    <TextField fx:id="HourlyWork" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <Text fx:id="RateText" disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Rate" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                    <TextField fx:id="Rate" disable="true" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                    <RadioButton fx:id="ManagerRadio" disable="true" mnemonicParsing="false" prefHeight="18.0" prefWidth="82.0" selected="true" text="Manager" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="EmployeeRole" />
+                                          <ToggleGroup fx:id="ManagementRole" />
                                        </toggleGroup></RadioButton>
-                                    <RadioButton fx:id="DepartmentHeadRadio" mnemonicParsing="false" text="Department Head" toggleGroup="$EmployeeRole" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                                    <RadioButton fx:id="DirectorRadio" mnemonicParsing="false" text="Director" toggleGroup="$EmployeeRole" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                                    <Button fx:id="ClearButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="Clear" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                                    <Button fx:id="AddEmployeeButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Add Employee" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                                    <Button fx:id="RemoveEmployeeButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Remove Employee" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                                    <Button fx:id="SetHoursButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Set Hours" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                    <RadioButton fx:id="DepartmentHeadRadio" disable="true" mnemonicParsing="false" text="Department Head" toggleGroup="$ManagementRole" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                                    <RadioButton fx:id="DirectorRadio" disable="true" mnemonicParsing="false" text="Director" toggleGroup="$ManagementRole" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                                    <Button fx:id="ClearButton" mnemonicParsing="false" onAction="#clearButtonPressed" prefHeight="26.0" prefWidth="126.0" text="Clear" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                    <Button fx:id="AddEmployeeButton" mnemonicParsing="false" onAction="#addEmployeeButtonPressed" prefHeight="26.0" prefWidth="122.0" text="Add Employee" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                    <Button fx:id="RemoveEmployeeButton" mnemonicParsing="false" onAction="#removeEmployeeButtonPressed" prefHeight="26.0" prefWidth="125.0" text="Remove Employee" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                    <Button fx:id="SetHoursButton" mnemonicParsing="false" onAction="#setHoursButtonPressed" prefHeight="26.0" prefWidth="120.0" text="Set Hours" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
@@ -93,7 +93,7 @@
                                     <Insets left="10.0" right="10.0" />
                                  </VBox.margin>
                               </GridPane>
-                              <TextArea fx:id="MessageOutput" prefHeight="148.0" prefWidth="600.0">
+                              <TextArea fx:id="MessageOutput" editable="false" prefHeight="148.0" prefWidth="600.0">
                                  <VBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </VBox.margin></TextArea>
@@ -143,7 +143,7 @@
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </VBox>
-                        <TextArea fx:id="OutputLog" layoutY="59.0" prefHeight="312.0" prefWidth="600.0">
+                        <TextArea fx:id="OutputLog" editable="false" layoutY="59.0" prefHeight="312.0" prefWidth="600.0">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" />
                            </padding></TextArea>

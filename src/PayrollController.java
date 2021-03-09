@@ -1,3 +1,4 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -62,7 +63,7 @@ public class PayrollController {
     private RadioButton ManagerRadio;
 
     @FXML
-    private ToggleGroup EmployeeRole;
+    private ToggleGroup ManagementRole;
 
     @FXML
     private RadioButton DepartmentHeadRadio;
@@ -106,5 +107,82 @@ public class PayrollController {
     @FXML
     private TextArea OutputLog;
 
-}
+    @FXML
+    void FullTimeRadioSelected(ActionEvent event) {
+    	AnualSalaryText.setDisable(false);
+    	AnualSalary.setDisable(false);
+    	HourlyWorkText.setDisable(true);
+    	HourlyWork.setDisable(true);
+    	RateText.setDisable(true);
+    	Rate.setDisable(true);
+    	ManagerRadio.setDisable(true);
+    	DepartmentHeadRadio.setDisable(true);
+    	DirectorRadio.setDisable(true);
+    }
 
+    @FXML
+    void ManagementRadioSelected(ActionEvent event) {
+    	AnualSalaryText.setDisable(false);
+    	AnualSalary.setDisable(false);
+    	HourlyWorkText.setDisable(true);
+    	HourlyWork.setDisable(true);
+    	RateText.setDisable(true);
+    	Rate.setDisable(true);
+    	ManagerRadio.setDisable(false);
+    	DepartmentHeadRadio.setDisable(false);
+    	DirectorRadio.setDisable(false);
+    }
+
+    @FXML
+    void PartTimeRadioSelected(ActionEvent event) {
+    	AnualSalaryText.setStyle("#acaaaa");
+    	AnualSalary.setDisable(true);
+    	HourlyWorkText.setDisable(false);
+    	HourlyWork.setDisable(false);
+    	RateText.setDisable(false);
+    	Rate.setDisable(false);
+    	ManagerRadio.setDisable(true);
+    	DepartmentHeadRadio.setDisable(true);
+    	DirectorRadio.setDisable(true);
+    }
+
+    @FXML
+    void addEmployeeButtonPressed(ActionEvent event) {
+    	String name = EmployeeName.getText();
+    	
+    	if (name.isEmpty()) {
+    		MessageOutput.appendText("Please eneter the Employee Name.\n");
+    		return;
+    	}
+    	
+    	if (!name.matches("^[a-zA-Z\s]*$")) {
+    		MessageOutput.appendText("Employee name should contain a-z or A-Z.\n");
+    		return;
+    	}
+    	
+    	if (name.matches("^[\s]*$")) {
+    		MessageOutput.appendText("Employee name should not contain only white space.\n");
+    		return;
+    	}
+    	
+    	
+    	
+    	
+    }
+
+    @FXML
+    void clearButtonPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void removeEmployeeButtonPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void setHoursButtonPressed(ActionEvent event) {
+
+    }
+
+}
