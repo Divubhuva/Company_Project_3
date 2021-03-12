@@ -412,7 +412,10 @@ public class PayrollController {
     			new ExtensionFilter("All Files","*.*"));
     	Stage stage = new Stage();
     	File sourceFile = chooser.showOpenDialog(stage);
-    	
+    	WriteFileToDataBase(sourceFile);
+    }
+    
+    private void WriteFileToDataBase(File sourceFile) {
     	if (sourceFile == null) {
     		OutputLog.appendText("File is not selected. \n");
     		return;
@@ -427,6 +430,12 @@ public class PayrollController {
     		OutputLog.appendText("File is not hidden. Hidden file not read by application. \n");
     		return;
     	}
+    	
+    	if (sourceFile.length() == 0) {
+    		OutputLog.appendText("File is empty. \n");
+    		return;
+    	}
+    	
     	
     	try {
 			Scanner src = new Scanner(sourceFile);
@@ -548,11 +557,10 @@ public class PayrollController {
 		            }
                  }
 			}
-		OutputLog.appendText("Selected file is import finished. \n");
+			OutputLog.appendText("Selected file is import finished. \n");
 		} catch (FileNotFoundException e) {
 			OutputLog.appendText("Exception is generated while reading file. \n");
 		}
-    	
     }
     
     @FXML
