@@ -14,6 +14,7 @@ public class Main extends Application {
 			final int height = 400;
 			Scene scene = new Scene(root,width,height);
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Payroll Processing Tool");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
