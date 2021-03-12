@@ -430,9 +430,15 @@ public class PayrollController {
     	if (!targetFile.exists()) {
     		try {
     			targetFile.createNewFile();
+    			
     		} catch (IOException e) {
 				OutputLog.appendText("File is not found exception generated. While creating new file.\n");
+				return;
 			}
+    		catch(Exception e){
+    			OutputLog.appendText("File exception is generated. Please retry export the file. \n");
+    			return;
+    		}
     	}
     	WriteDateBaseToFile(targetFile.getPath());
     }
@@ -454,8 +460,7 @@ public class PayrollController {
         } catch (IOException e) {
             OutputLog.appendText("Error is generated while wrtting the file.\n");
         }
-        finally
-    	{ 
+        finally { 
     	   try{
     	      if(bw!=null) {
     	    	  bw.close();
