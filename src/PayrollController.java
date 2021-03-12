@@ -360,6 +360,11 @@ public class PayrollController {
     		OutputLog.appendText("Employee database is empty.\n");
             return;
         }
+    	
+    	OutputLog.appendText("--Printing earning statements for all employees--");
+    	for (int index = 0; index <companyDataBaseAccess.getNumberOfEmployee();index++) {
+    		OutputLog.appendText(companyDataBaseAccess.print(index));
+    	}
     }
 
     @FXML
@@ -368,6 +373,11 @@ public class PayrollController {
     		OutputLog.appendText("Employee database is empty.\n");
             return;
         }
+    	
+    	OutputLog.appendText("--Printing earning statements by date hired--");
+    	for (int index = 0; index <companyDataBaseAccess.getNumberOfEmployee();index++) {
+    		OutputLog.appendText(companyDataBaseAccess.printByDate(index));
+    	}
     }
 
     @FXML
@@ -376,6 +386,10 @@ public class PayrollController {
     		OutputLog.appendText("Employee database is empty.\n");
             return;
         }
+    	OutputLog.appendText("--Printing earning statements by department--");
+    	for (int index = 0; index <companyDataBaseAccess.getNumberOfEmployee();index++) {
+    		OutputLog.appendText(companyDataBaseAccess.printByDepartment(index));
+    	}
     }
     
     @FXML

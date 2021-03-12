@@ -174,51 +174,58 @@ public class Company
     }
 
     /**
-     * This prints the earning statements for all employees.
+     * This prints the earning statements for employee.
+     * @param Int index of employee index database. 
+     * @return String show earning statement of employees at particular index.
      */
-    public void print()
+    public String print(int index)
     {
-
+    	String returnString = "";
         if (!isDataBaseEmpty())
         {
-            System.out.println("--Printing earning statements for all employees--");
-            for( int index = 0; index < this.numEmployee;index++)
-            {
-                System.out.println(emplist[index].toString());
-            }
+            
+        	if (index >= 0 &&  index < this.numEmployee ) {
+            	returnString = emplist[index].toString();
+            } 
         }
+        return returnString;
     }
 
     /**
-     * This prints the earning statements of all employees by department.
+     * This prints the earning statements of employees by department.
+     * @param Int index of employee after sorting by department. 
+     * @return String show earning statement of employees at particular index.
      */
-    public void printByDepartment()
+    public String printByDepartment(int index)
     {
+    	String returnString = "";
         if (!isDataBaseEmpty())
         {
             sort(true);
-            System.out.println("--Printing earning statements by department--");
-            for( int index = 0; index < this.numEmployee;index++)
-            {
-                System.out.println(emplist[index].toString());
-            }
+            
+            if (index >= 0 &&  index < this.numEmployee ) {
+            	returnString = emplist[index].toString();
+            } 
         }
+        return returnString;
     }
 
     /**
-     * This prints the earning statements of all employees by date hired.
+     * This prints the earning statements of  employees by date hired.
+     * @param Int index of employee after sorting by date hired. 
+     * @return String show earning statement of employees at particular index.
      */
-    public void printByDate()
+    public String printByDate(int index)
     {
+    	String returnString = "";
         if (!isDataBaseEmpty())
         {
             sort(false);
-            System.out.println("--Printing earning statements by date hired--");
-            for( int index = 0; index < this.numEmployee;index++)
-            {
-                System.out.println(emplist[index].toString());
-            }
+            if (index >= 0 &&  index < this.numEmployee ) {
+            	returnString = emplist[index].toString();
+            } 
         }
+        return returnString;
     }
 
     /**
@@ -272,5 +279,12 @@ public class Company
         }
         return false;
     }
-
+    
+    /**
+     * return number of Employees in Data base.
+     * @return int total number of employees in database.
+     * */
+    public int getNumberOfEmployee(){
+    	return this.numEmployee;
+    }
 }
