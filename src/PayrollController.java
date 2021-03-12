@@ -459,7 +459,7 @@ public class PayrollController {
     	Double returnSalary = -1.0;
     	final String amount = AnualSalary.getText();
     	if (amount.isEmpty()) {
-    		MessageOutput.appendText("Please eneter the Salary.\n");
+    		MessageOutput.appendText("Please enter the Salary.\n");
     		return returnSalary;
     	}
     	
@@ -492,7 +492,7 @@ public class PayrollController {
     	Double returnRate = -1.0;
     	final String amount = Rate.getText();
     	if (amount.isEmpty()) {
-    		MessageOutput.appendText("Please eneter the rate.\n");
+    		MessageOutput.appendText("Please enter the rate.\n");
     		return returnRate;
     	}
     	
@@ -527,7 +527,7 @@ public class PayrollController {
     	Double returnHour = -1.0;
     	final String workHour = HourlyWork.getText();
     	if (workHour.isEmpty()) {
-    		MessageOutput.appendText("Please eneter the workHour.\n");
+    		MessageOutput.appendText("Please enter the workHour.\n");
     		return returnHour;
     	}
     	

@@ -283,8 +283,22 @@ public class Company
     /**
      * return number of Employees in Data base.
      * @return int total number of employees in database.
-     * */
+     */
     public int getNumberOfEmployee(){
     	return this.numEmployee;
+    }
+    
+    /**
+     * 
+     */
+    public void exportDatabase() {
+    	
+    }
+    
+    /**
+     * 
+     */
+    public void importDatabase() {
+    	
     }
 }
