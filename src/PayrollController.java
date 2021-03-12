@@ -351,7 +351,7 @@ public class PayrollController {
         }
     	
     	companyDataBaseAccess.processPayments();
-    	OutputLog.appendText("Calutlation of employee payments is done.");
+    	OutputLog.appendText("Calutlation of employee payments is done.\n");
     }
     
     @FXML
@@ -361,9 +361,9 @@ public class PayrollController {
             return;
         }
     	
-    	OutputLog.appendText("--Printing earning statements for all employees--");
+    	OutputLog.appendText("--Printing earning statements for all employees--\n");
     	for (int index = 0; index <companyDataBaseAccess.getNumberOfEmployee();index++) {
-    		OutputLog.appendText(companyDataBaseAccess.print(index));
+    		OutputLog.appendText(companyDataBaseAccess.print(index)+"\n");
     	}
     }
 
@@ -374,9 +374,9 @@ public class PayrollController {
             return;
         }
     	
-    	OutputLog.appendText("--Printing earning statements by date hired--");
+    	OutputLog.appendText("--Printing earning statements by date hired--\n");
     	for (int index = 0; index <companyDataBaseAccess.getNumberOfEmployee();index++) {
-    		OutputLog.appendText(companyDataBaseAccess.printByDate(index));
+    		OutputLog.appendText(companyDataBaseAccess.printByDate(index)+"\n");
     	}
     }
 
@@ -386,9 +386,9 @@ public class PayrollController {
     		OutputLog.appendText("Employee database is empty.\n");
             return;
         }
-    	OutputLog.appendText("--Printing earning statements by department--");
+    	OutputLog.appendText("--Printing earning statements by department--\n");
     	for (int index = 0; index <companyDataBaseAccess.getNumberOfEmployee();index++) {
-    		OutputLog.appendText(companyDataBaseAccess.printByDepartment(index));
+    		OutputLog.appendText(companyDataBaseAccess.printByDepartment(index)+"\n");
     	}
     }
     
