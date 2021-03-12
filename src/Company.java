@@ -289,16 +289,20 @@ public class Company
     }
     
     /**
-     * 
+     * This method will return single string with separator as new line character.
+     * @return String  single string for all data based employees.
      */
-    public void exportDatabase() {
+    public String exportDatabase() {
+    	String exportString = "";
     	
-    }
-    
-    /**
-     * 
-     */
-    public void importDatabase() {
+    	if (isDataBaseEmpty()) {
+    		return exportString;
+    	}
     	
+    	for(int index = 0;index <this.numEmployee;index++) {
+    		exportString += emplist[index].toString();
+    		exportString +="\n";
+    	}
+    	return exportString;
     }
 }

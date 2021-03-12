@@ -1,3 +1,9 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +14,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public class PayrollController {
 
@@ -392,18 +401,74 @@ public class PayrollController {
     	}
     }
     
-    @FXML
-    void ExportFile(ActionEvent event) {
-
-    }
-
+    
     @FXML
     void ImportFile(ActionEvent event) {
-
+    	FileChooser chooser = new FileChooser();
+    	chooser.setTitle("Open Source File for Import");
+    	chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files","*.txt"),
+    			new ExtensionFilter("All Files","*.*"));
+    	Stage stage = new Stage();
+    	File sourceFile = chooser.showOpenDialog(stage);
+    	
+    	
     }
     
-    
-    
+    @FXML
+    void ExportFile(ActionEvent event) {
+    	FileChooser chooser = new FileChooser();
+    	chooser.setTitle("Save Target File for Export");
+    	chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files","*.txt"),
+    			new ExtensionFilter("All Files","*.*"));
+    	Stage stage = new Stage();
+    	File targetFile = chooser.showSaveDialog(stage);
+    	
+    	if (targetFile == null) {
+    		return;
+    	}
+
+    	if (!targetFile.exists()) {
+    		try {
+    			targetFile.createNewFile();
+    		} catch (IOException e) {
+				OutputLog.appendText("File is not found exception generated. While creating new file.\n");
+			}
+    	}
+    	WriteDateBaseToFile(targetFile.getPath());
+    }
+
+    private void WriteDateBaseToFile(String filePath) {      
+        PrintWriter fw = null;
+        BufferedWriter bw  = null;
+        try {
+            fw = new PrintWriter(filePath);
+            bw = new BufferedWriter(fw);
+            if (!companyDataBaseAccess.exportDatabase().isEmpty()) {
+            	bw.write(companyDataBaseAccess.exportDatabase());
+            	OutputLog.appendText("Database is write successful in file.\n");
+            }
+            else {
+            	bw.write("Data Base is empty.");
+            	OutputLog.appendText("Data Base is empty. Empty file is generated.\n");
+            }
+        } catch (IOException e) {
+            OutputLog.appendText("Error is generated while wrtting the file.\n");
+        }
+        finally
+    	{ 
+    	   try{
+    	      if(bw!=null) {
+    	    	  bw.close();
+    	      }
+    	      if (fw != null) {
+    	    	  fw.close();
+    	      }
+    	   }catch(Exception ex){
+    		   OutputLog.appendText("Error in closing the BufferedWriter.\n");
+    	    }
+    	}
+    }
+
     private String ReadEmployeeName() {
     	String returnName = "";
     	final String name = EmployeeName.getText();
