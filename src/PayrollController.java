@@ -251,7 +251,14 @@ public class PayrollController {
 
     @FXML
     void clearButtonPressed(ActionEvent event) {
-
+    	EmployeeName.clear();
+    	AnualSalary.clear();
+    	HourlyWork.clear();
+    	Rate.clear();
+    	MessageOutput.clear();
+    	final TextField dateEditor = SelectedDate.getEditor();
+    	dateEditor.clear();
+    	SelectedDate.setValue(null);
     }
 
     @FXML
@@ -365,7 +372,7 @@ public class PayrollController {
     	final String dateValue = dateEditor.getText();
     	
     	if (dateValue.isEmpty()) {
-    		MessageOutput.appendText("Please eneter the date.\n");
+    		MessageOutput.appendText("Please enter the date.\n");
     		return returnDate;
     	}
     	
