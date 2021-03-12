@@ -343,6 +343,52 @@ public class PayrollController {
         	MessageOutput.appendText("Employee does not exist.\n");
         }
     }
+    @FXML
+    void ComputePayment(ActionEvent event) {
+    	if (companyDataBaseAccess.isDataBaseEmpty()) {
+    		OutputLog.appendText("Employee database is empty.\n");
+            return;
+        }
+    	
+    	companyDataBaseAccess.processPayments();
+    	OutputLog.appendText("Calutlation of employee payments is done.");
+    }
+    
+    @FXML
+    void PrintAllEmployes(ActionEvent event) {
+    	if (companyDataBaseAccess.isDataBaseEmpty()) {
+    		OutputLog.appendText("Employee database is empty.\n");
+            return;
+        }
+    }
+
+    @FXML
+    void PrintByDatehired(ActionEvent event) {
+    	if (companyDataBaseAccess.isDataBaseEmpty()) {
+    		OutputLog.appendText("Employee database is empty.\n");
+            return;
+        }
+    }
+
+    @FXML
+    void PrintByDepartment(ActionEvent event) {
+    	if (companyDataBaseAccess.isDataBaseEmpty()) {
+    		OutputLog.appendText("Employee database is empty.\n");
+            return;
+        }
+    }
+    
+    @FXML
+    void ExportFile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ImportFile(ActionEvent event) {
+
+    }
+    
+    
     
     private String ReadEmployeeName() {
     	String returnName = "";

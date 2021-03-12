@@ -120,20 +120,20 @@
                                 <menus>
                                   <Menu mnemonicParsing="false" text="File">
                                     <items>
-                                      <MenuItem fx:id="ImportItem" mnemonicParsing="false" text="Import" />
-                                      <MenuItem fx:id="ExportItem" mnemonicParsing="false" text="Export" />
+                                      <MenuItem fx:id="ImportItem" mnemonicParsing="false" onAction="#ImportFile" text="Import" />
+                                      <MenuItem fx:id="ExportItem" mnemonicParsing="false" onAction="#ExportFile" text="Export" />
                                     </items>
                                   </Menu>
                                   <Menu mnemonicParsing="false" text="Print">
                                     <items>
-                                      <MenuItem fx:id="AllEmployePrintItem" mnemonicParsing="false" text="All Employee" />
-                                      <MenuItem fx:id="ByDepartmentPrintItem" mnemonicParsing="false" text="By Department" />
-                                      <MenuItem fx:id="ByDateHiredItem" mnemonicParsing="false" text="By Date Hired" />
+                                      <MenuItem fx:id="AllEmployePrintItem" mnemonicParsing="false" onAction="#PrintAllEmployes" text="All Employee" />
+                                      <MenuItem fx:id="ByDepartmentPrintItem" mnemonicParsing="false" onAction="#PrintByDepartment" text="By Department" />
+                                      <MenuItem fx:id="ByDateHiredItem" mnemonicParsing="false" onAction="#PrintByDatehired" text="By Date Hired" />
                                     </items>
                                   </Menu>
                                   <Menu mnemonicParsing="false" text="Payment">
                                     <items>
-                                      <MenuItem fx:id="ComputeItem" mnemonicParsing="false" text="Compute" />
+                                      <MenuItem fx:id="ComputeItem" mnemonicParsing="false" onAction="#ComputePayment" text="Compute" />
                                     </items>
                                   </Menu>
                                 </menus>
