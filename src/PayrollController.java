@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -410,8 +412,155 @@ public class PayrollController {
     			new ExtensionFilter("All Files","*.*"));
     	Stage stage = new Stage();
     	File sourceFile = chooser.showOpenDialog(stage);
+    	WriteFileToDataBase(sourceFile);
+    }
+    
+    private void WriteFileToDataBase(File sourceFile) {
+    	if (sourceFile == null) {
+    		OutputLog.appendText("File is not selected. \n");
+    		return;
+    	}
+    	
+    	if (!sourceFile.exists()) {
+    		OutputLog.appendText("File is not exist. \n");
+    		return;
+    	}
+    	
+    	if (sourceFile.isHidden()) {
+    		OutputLog.appendText("File is not hidden. Hidden file not read by application. \n");
+    		return;
+    	}
+    	
+    	if (sourceFile.length() == 0) {
+    		OutputLog.appendText("File is empty. \n");
+    		return;
+    	}
     	
     	
+    	try {
+			Scanner src = new Scanner(sourceFile);
+			while(src.hasNextLine()){
+				 String inputFromUser = src.nextLine();
+				 if (inputFromUser.isBlank() || inputFromUser.isEmpty()) {
+					 OutputLog.appendText(" Empty line is skip from file.\n");
+		             continue;
+		         }
+				 
+		         String separator =",";
+		         StringTokenizer input = new StringTokenizer(inputFromUser,separator,false);
+		         int numberOfToken = input.countTokens();
+		         
+		         String command;
+		            if (numberOfToken > 0)
+		            {
+		                command = input.nextToken();
+		            }
+		            else
+		            {
+		                command = input.toString();
+		            }
+
+
+		            if (!command.matches("(P|F|M)"))
+		            {
+		            	OutputLog.appendText("Unknow command is found in selected file. \n");
+		                continue;
+		            }
+		            
+		            int neededToken = 5;
+		            
+		            if (command.equals("M")) {
+		            	neededToken++;
+		            }
+		            
+               	 	if(numberOfToken == neededToken) {
+               	 		String employName = input.nextToken();
+               	 		String department = input.nextToken();
+               	 		if (!department.matches("(CS|ECE|IT)"))
+               	 		{
+               	 			OutputLog.appendText("'"+department + "' is not a valid department code.\n");
+               	 			continue;
+               	 		}
+                     
+               	 		Date heiredDate = 	new Date(input.nextToken());
+
+               	 		if (!heiredDate.isValid())
+               	 		{
+               	 			OutputLog.appendText(heiredDate.toString()+ " is not a valid date!\n");
+               	 			continue;
+               	 		}
+                     
+               	 		String amount = input.nextToken();
+               	 		Double salaryOrARateOrHour = Double.parseDouble(amount);
+               	 		
+               	 	switch(command) {
+	                case "P":{
+	                	if (salaryOrARateOrHour < 0)
+                        {
+	                		OutputLog.appendText("Pay rate cannot be negative.");
+                            continue;
+                        }
+                        else
+                        {
+                            boolean added = companyDataBaseAccess.add(new Parttime(employName,department,heiredDate, salaryOrARateOrHour));
+                            if (!added) {
+                            	OutputLog.appendText(employName +"is not added to data base because Employee is already in the list.");
+                            }
+                            
+                        }
+	                }
+	                break;
+	                case "F":{
+	                	if (salaryOrARateOrHour < 0)
+                        {
+	                		OutputLog.appendText("Salary cannot be negative.");
+                            continue;
+
+                        }
+                        else
+                        {
+                            boolean added = companyDataBaseAccess.add(new Fulltime(employName,department,heiredDate, salaryOrARateOrHour));
+                            if (!added)
+                            {
+                            	OutputLog.appendText(employName +"is not added to data base because Employee is already in the list.");
+                            }
+                        }
+	                	}
+	                break;
+	                case "M":{
+	                	if (salaryOrARateOrHour < 0)
+                        {
+	                		OutputLog.appendText("Salary cannot be negative.");
+                        }
+                        else
+                        {
+                            int departmentCode = Integer.parseInt(input.nextToken());
+
+                            if (departmentCode <= 0 || departmentCode > 3)
+                            {
+                            	OutputLog.appendText("Invalid management code.");
+                                continue;
+                            }
+                            else
+                            {
+                                boolean added = companyDataBaseAccess.add(new Management(employName,department,heiredDate, salaryOrARateOrHour,departmentCode));
+                                if (!added)
+                                {
+                                	OutputLog.appendText(employName +"is not added to data base because Employee is already in the list.");
+                                }
+                            }
+                        }
+                		}
+	                break;
+	                default:
+	                	OutputLog.appendText("Command is not identify. \n");
+		            }
+                 }
+			}
+			OutputLog.appendText("Selected file is import finished. \n");
+		} catch (FileNotFoundException e) {
+			OutputLog.appendText("Exception is generated while reading file. \n");
+		}
     }
     
     @FXML
