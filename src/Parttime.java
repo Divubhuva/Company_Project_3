@@ -1,4 +1,5 @@
 
+
 /**
  * This class extends the Employee class and includes specific data and operations in regards to a part-time employee..
  *
@@ -7,14 +8,24 @@
  */
 public class Parttime extends Employee
 {
-	/**
-	 * hourlyRate is show hourly rate for part time Employee. 
-	 * */
+    /**
+     * hourlyRate is show hourly rate for part time Employee.
+     * */
     private double hourlyRate = 0.0;
     /**
-	 * hoursWork is show work hour of Employee. 
-	 * */
+     * hoursWork is show work hour of Employee.
+     * */
     private double hoursWork = 0.0;
+
+    /**
+     * REGULAR_PAY_RATE_HOUR represents the regular pay rate per hour.
+     */
+    private static final double REGULAR_PAY_RATE_HOUR = 80;
+
+    /**
+     * MAX_HOUR represents the maximum work hours for a part time employee.
+     */
+    private static final double MAX_HOUR = 100;
 
     /**
      * Creates an instance of Parttime using name, department,and hiring date.
@@ -79,15 +90,14 @@ public class Parttime extends Employee
     @Override
     public void calculatePayment()
     {
-        final double regularPayRateHour = 80;
-        if (hoursWork <= regularPayRateHour)
+        if (hoursWork <= REGULAR_PAY_RATE_HOUR)
         {
             super.setPayment(hourlyRate * hoursWork);
         }
         else
         {
-            double payment = hourlyRate * regularPayRateHour;
-            double extraHour = hoursWork - regularPayRateHour;
+            double payment = hourlyRate * REGULAR_PAY_RATE_HOUR;
+            double extraHour = hoursWork - REGULAR_PAY_RATE_HOUR;
             double HourlyRateIncereaseFactor = 1.5;
             double newHourlyRate = hourlyRate * HourlyRateIncereaseFactor;
             payment = payment + (newHourlyRate*extraHour);
@@ -105,8 +115,7 @@ public class Parttime extends Employee
     public boolean setWorkHours(double workingHours)
     {
         boolean set = false;
-        final double MaxHour = 100;
-        if (workingHours <= MaxHour)
+        if (workingHours <= MAX_HOUR)
         {
             hoursWork = workingHours;
             set= true;

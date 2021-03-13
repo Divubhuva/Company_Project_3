@@ -9,22 +9,38 @@
 public class Management extends Fulltime
 {
 
-	/**
-	 * manager is represent the type of role is Manager.
-	 * */
-    private final int manager = 1;
     /**
-	 * departmentHead is represent the type of role is Department Head.
-	 * */
-    private final int departmentHead = 2;
+     * manager is represent the type of role is Manager.
+     * */
+    private static final int MANAGER = 1;
     /**
-	 * director is represent the type of role is Director.
-	 * */
-    private final int director = 3;
+     * departmentHead is represent the type of role is Department Head.
+     * */
+    private static final int DEPARTMENT_HEAD = 2;
+    /**
+     * director is represent the type of role is Director.
+     * */
+    private static final int DIRECTOR = 3;
     /**
      * typeOfManagementRole shows type of management role of Management full time employes.
      * */
     private int typeOfManagementRole;
+
+    /**
+     * MANAGER_COMPENSATION represents the manager's pay
+     */
+    private static final double MANAGER_COMPENSATION = 5000.00;
+
+    /**
+     * DEPARTMENT_HEAD_COMPENSATION represents the department head's pay
+     */
+    private static final double DEPARTMENT_HEAD_COMPENSATION = 9500.00;
+
+    /**
+     * DIRECTOR_COMPENSATION represents the director's pay
+     */
+    private static final double DIRECTOR_COMPENSATION = 12000.00;
+
 
     /**
      * Creates an instance of Management using name, department, hiring date, annual salary, and manager type.
@@ -50,15 +66,15 @@ public class Management extends Fulltime
     public String toString()
     {
         String roleType = "";
-        if (typeOfManagementRole == manager)
+        if (typeOfManagementRole == MANAGER)
         {
             roleType = "Manager";
         }
-        if (typeOfManagementRole == departmentHead)
+        if (typeOfManagementRole == DEPARTMENT_HEAD)
         {
             roleType = "Department Head";
         }
-        if (typeOfManagementRole == director)
+        if (typeOfManagementRole == DIRECTOR)
         {
             roleType = "Director";
         }
@@ -104,17 +120,17 @@ public class Management extends Fulltime
     {
         double annuallyCompensation  = 0.0;
         double Compensation;
-        if (typeOfManagementRole == manager)
+        if (typeOfManagementRole == MANAGER)
         {
-            annuallyCompensation = 5000.00;
+            annuallyCompensation = MANAGER_COMPENSATION;
         }
-        if (typeOfManagementRole == departmentHead)
+        if (typeOfManagementRole == DEPARTMENT_HEAD)
         {
-            annuallyCompensation = 9500.00;
+            annuallyCompensation = DEPARTMENT_HEAD_COMPENSATION;
         }
-        if (typeOfManagementRole == director)
+        if (typeOfManagementRole == DIRECTOR)
         {
-            annuallyCompensation = 12000.00;
+            annuallyCompensation = DIRECTOR_COMPENSATION;
         }
         Compensation = annuallyCompensation/super.getNumberOfPayPeriod();
         return Compensation;
