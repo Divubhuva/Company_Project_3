@@ -12,15 +12,15 @@ public class Management extends Fulltime
 	/**
 	 * manager is represent the type of role is Manager.
 	 * */
-    private int manager = 1;
+    private final int manager = 1;
     /**
 	 * departmentHead is represent the type of role is Department Head.
 	 * */
-    private int departmentHead = 2;
+    private final int departmentHead = 2;
     /**
 	 * director is represent the type of role is Director.
 	 * */
-    private int director = 3;
+    private final int director = 3;
     /**
      * typeOfManagementRole shows type of management role of Management full time employes.
      * */
