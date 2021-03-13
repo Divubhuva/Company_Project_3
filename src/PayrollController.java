@@ -28,103 +28,201 @@ import javafx.stage.Stage;
  */
 public class PayrollController {
 
-
+	/**
+	 * EmployeeName use to enter name of employees
+	 */
     @FXML
     private TextField EmployeeName;
 
+    /**
+	 * CSRadio use to select CS department.
+	 */
     @FXML
     private RadioButton CSRadio;
-
+    
+    /**
+	 * Department use to make group of radio button. 
+	 */
     @FXML
     private ToggleGroup Department;
 
+    /**
+	 * ITRadio use to select It department.
+	 */
     @FXML
     private RadioButton ITRadio;
 
+    /**
+   	 * ECERadio use to select ECE department.
+   	 */
     @FXML
     private RadioButton ECERadio;
 
+    /**
+   	 * SelectedDate use to select date
+   	 */
     @FXML
     private DatePicker SelectedDate;
 
+    /**
+   	 * FullTimeRadio use to select full time employees.
+   	 */
     @FXML
     private RadioButton FullTimeRadio;
 
+    /**
+   	 * EmployeeType use to make group of employees type
+   	 */
     @FXML
     private ToggleGroup EmployeeType;
 
+    /**
+   	 * PartTimeRadio use to select part time employees.
+   	 */
     @FXML
     private RadioButton PartTimeRadio;
 
+    /**
+   	 * ManagementRadio use to select management employees.
+   	 */
     @FXML
     private RadioButton ManagementRadio;
 
+    /**
+   	 * AnualSalaryText use to show label of salary.
+   	 */
     @FXML
     private Text AnualSalaryText;
 
+    /**
+   	 * AnualSalaryText use to enter salary.
+   	 */
     @FXML
     private TextField AnualSalary;
 
+    /**
+   	 * HourlyWorkRadio use to select the hourly work.
+   	 */
     @FXML
     private RadioButton HourlyWorkRadio;
 
+    /**
+   	 * PartTimeInfo use to make group of part time info.
+   	 */
     @FXML
     private ToggleGroup PartTimeInfo;
 
+    /**
+   	 * RateRadio use to select the rate.
+   	 */
     @FXML
     private RadioButton RateRadio;
 
+    /**
+   	 * HourlyWork use to enter work hour
+   	 */
     @FXML
     private TextField HourlyWork;
 
+    /**
+   	 * Rate use to enter rate per hour
+   	 */
     @FXML
     private TextField Rate;
 
+    /**
+   	 * ManagerRadio use select manager role.
+   	 */
     @FXML
     private RadioButton ManagerRadio;
 
+    /**
+   	 * ManagementRole use to make group of role
+   	 */
     @FXML
     private ToggleGroup ManagementRole;
 
+    /**
+   	 * DepartmentHeadRadio use select Department Head role.
+   	 */
     @FXML
     private RadioButton DepartmentHeadRadio;
 
+    /**
+   	 * DirectorRadio use select Director role.
+   	 */
     @FXML
     private RadioButton DirectorRadio;
 
+    /**
+   	 * ClearButton use to clear all text field
+   	 */
     @FXML
     private Button ClearButton;
 
+    /**
+   	 * AddEmployeeButton use to add employee.
+   	 */
     @FXML
     private Button AddEmployeeButton;
-
+    
+    /**
+   	 * RemoveEmployeeButton use to remove employee.
+   	 */
     @FXML
     private Button RemoveEmployeeButton;
 
+    /**
+   	 * SetHoursButton use to set hour of part time employee.
+   	 */
     @FXML
     private Button SetHoursButton;
 
+    /**
+   	 * MessageOutput use to show message.
+   	 */
     @FXML
     private TextArea MessageOutput;
 
+    /**
+   	 * ImportItem use to show import file.
+   	 */
     @FXML
     private MenuItem ImportItem;
 
+    /**
+   	 * ExportItem use to show export file.
+   	 */
     @FXML
     private MenuItem ExportItem;
 
+    /**
+   	 * AllEmployePrintItem use to show print all employees.
+   	 */
     @FXML
     private MenuItem AllEmployePrintItem;
 
+    /**
+   	 * ByDepartmentPrintItem use to show print by department employees.
+   	 */
     @FXML
     private MenuItem ByDepartmentPrintItem;
 
+    /**
+   	 * ByDateHiredItem use to show print by date hired employees.
+   	 */
     @FXML
     private MenuItem ByDateHiredItem;
 
+    /**
+   	 * ComputeItem use to calculate payment
+   	 */
     @FXML
     private MenuItem ComputeItem;
 
+    /**
+   	 * OutputLog use to show log.
+   	 */
     @FXML
     private TextArea OutputLog;
 
