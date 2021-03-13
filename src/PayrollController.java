@@ -891,8 +891,10 @@ public class PayrollController {
     	return returnHour;
     }
 
-    
-    
+	/**
+	 * Event handler for when the RateRadio radio button is selected.
+	 * @param event from the RateRadio.
+	 */
     @FXML
     void RateRadioSelected(ActionEvent event) {
 		AddEmployeeButton.setDisable(false);
@@ -900,7 +902,10 @@ public class PayrollController {
 		Rate.setDisable(false);
 		HourlyWork.setDisable(true);
     }
-    
+	/**
+	 * Event handler for when the HourlyWork radio button is selected.
+	 * @param event from the HourlyWork radio.
+	 */
     @FXML
     void HourlyWorkRadioSelected(ActionEvent event) {
 		AddEmployeeButton.setDisable(true);
