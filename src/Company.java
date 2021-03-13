@@ -179,7 +179,7 @@ public class Company
 
     /**
      * This prints the earning statements for employee.
-     * @param Int index of employee index database. 
+     * @param index of employee index database. 
      * @return String show earning statement of employees at particular index.
      */
     public String print(int index)
@@ -197,7 +197,7 @@ public class Company
 
     /**
      * This prints the earning statements of employees by department.
-     * @param Int index of employee after sorting by department. 
+     * @param index of employee after sorting by department. 
      * @return String show earning statement of employees at particular index.
      */
     public String printByDepartment(int index)
@@ -216,7 +216,7 @@ public class Company
 
     /**
      * This prints the earning statements of  employees by date hired.
-     * @param Int index of employee after sorting by date hired. 
+     * @param index of employee after sorting by date hired. 
      * @return String show earning statement of employees at particular index.
      */
     public String printByDate(int index)
