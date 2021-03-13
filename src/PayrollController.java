@@ -59,13 +59,16 @@ public class PayrollController {
     private TextField AnualSalary;
 
     @FXML
-    private Text HourlyWorkText;
+    private RadioButton HourlyWorkRadio;
+
+    @FXML
+    private ToggleGroup PartTimeInfo;
+
+    @FXML
+    private RadioButton RateRadio;
 
     @FXML
     private TextField HourlyWork;
-
-    @FXML
-    private Text RateText;
 
     @FXML
     private TextField Rate;
@@ -136,6 +139,9 @@ public class PayrollController {
     	ManagerRadio.setDisable(true);
     	DepartmentHeadRadio.setDisable(true);
     	DirectorRadio.setDisable(true);
+    	HourlyWorkRadio.setDisable(true);
+    	RateRadio.setDisable(true);
+    	AddEmployeeButton.setDisable(false);
     	
     }
 
@@ -148,18 +154,34 @@ public class PayrollController {
     	ManagerRadio.setDisable(false);
     	DepartmentHeadRadio.setDisable(false);
     	DirectorRadio.setDisable(false);
-    	
+    	HourlyWorkRadio.setDisable(true);
+    	RateRadio.setDisable(true);
+    	AddEmployeeButton.setDisable(false);
     }
 
     @FXML
     void PartTimeRadioSelected(ActionEvent event) {
     	AnualSalary.setDisable(true);
-    	HourlyWork.setDisable(false);
-    	Rate.setDisable(false);
+    	
+    	
     	ManagerRadio.setDisable(true);
     	DepartmentHeadRadio.setDisable(true);
     	DirectorRadio.setDisable(true);
-    	SetHoursButton.setDisable(false);
+    	HourlyWorkRadio.setDisable(false);
+    	RateRadio.setDisable(false);
+    	
+    	if (HourlyWorkRadio.isSelected()) {
+    		AddEmployeeButton.setDisable(true);
+    		SetHoursButton.setDisable(false);
+    		Rate.setDisable(true);
+    		HourlyWork.setDisable(false);
+    	}
+    	else {
+    		AddEmployeeButton.setDisable(false);
+    		SetHoursButton.setDisable(true);
+    		Rate.setDisable(false);
+    		HourlyWork.setDisable(true);
+    	}
     }
 
     @FXML
@@ -782,4 +804,21 @@ public class PayrollController {
     	return returnHour;
     }
 
+    
+    
+    @FXML
+    void RateRadioSelected(ActionEvent event) {
+		AddEmployeeButton.setDisable(false);
+		SetHoursButton.setDisable(true);
+		Rate.setDisable(false);
+		HourlyWork.setDisable(true);
+    }
+    
+    @FXML
+    void HourlyWorkRadioSelected(ActionEvent event) {
+		AddEmployeeButton.setDisable(true);
+		SetHoursButton.setDisable(false);
+		Rate.setDisable(true);
+		HourlyWork.setDisable(false);
+    }
 }
