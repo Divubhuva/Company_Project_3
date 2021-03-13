@@ -20,7 +20,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
+/**
+ * This is the class to help interact with Main.
+ *
+ * Date: 03/12/2021
+ * @author Divya Bhuva, Dorothy Wu
+ */
 public class PayrollController {
+
 
     @FXML
     private TextField EmployeeName;
@@ -123,12 +130,14 @@ public class PayrollController {
      * companyDataBaseAccess is provide interface with command.
      */
     private Company companyDataBaseAccess = new Company();
-    
-    
-    
-    
-    @FXML
-    void FullTimeRadioSelected(ActionEvent event) {
+
+
+	/**
+	 * Event handler for when the Full Time radio button is selected.
+	 * @param event from the Full Time radio button.
+	 */
+	@FXML
+	void fullTimeRadioSelected(ActionEvent event) {
     	AnualSalary.setDisable(false);
     	HourlyWork.setDisable(true);
     	SetHoursButton.setDisable(true);
@@ -139,8 +148,12 @@ public class PayrollController {
     	
     }
 
-    @FXML
-    void ManagementRadioSelected(ActionEvent event) {
+	/**
+	 * Event handler for when the Management radio button is selected.
+	 * @param event from the Management radio button.
+	 */
+	@FXML
+    void managementRadioSelected(ActionEvent event) {
     	AnualSalary.setDisable(false);
     	HourlyWork.setDisable(true);
     	SetHoursButton.setDisable(true);
@@ -151,8 +164,12 @@ public class PayrollController {
     	
     }
 
-    @FXML
-    void PartTimeRadioSelected(ActionEvent event) {
+	/**
+	 * Event handler for when the Part Time radio button is selected.
+	 * @param event event from the Part Time radio button.
+	 */
+	@FXML
+    void partTimeRadioSelected(ActionEvent event) {
     	AnualSalary.setDisable(true);
     	HourlyWork.setDisable(false);
     	Rate.setDisable(false);
@@ -162,16 +179,20 @@ public class PayrollController {
     	SetHoursButton.setDisable(false);
     }
 
-    @FXML
+	/**
+	 * Event handler for when the Add Employee button is selected.
+	 * @param event from the Add Employee button.
+	 */
+	@FXML
     void addEmployeeButtonPressed(ActionEvent event) {
     	
     	
-    	final String employName = ReadEmployeeName();
+    	final String employName = readEmployeeName();
     	if (employName.isEmpty()) {
     		return;
     	}
     	
-    	final String dateString = ReadHiredDate();
+    	final String dateString = readHiredDate();
     	if (dateString.isEmpty()) {
     		return;
     	}
@@ -197,7 +218,7 @@ public class PayrollController {
       	final Double inValidAmount = -1.0;
       	
       	if (fullTime.equals(employeePosition)) {
-      		final Double salary = ReadAnualSalary();
+      		final Double salary = readAnnualSalary();
       		if (Double.compare(salary, inValidAmount) == 0) {
       			return;
       		}
@@ -206,14 +227,14 @@ public class PayrollController {
       	}	
       	else if(partTime.equals(employeePosition)) {
       		
-      		final Double rate = ReadRate();
+      		final Double rate = readRate();
       		if (Double.compare(rate, inValidAmount) == 0) {
       			return;
       		}
       		added = companyDataBaseAccess.add(new Parttime(employName,department,heiredDate, rate));
       	}
       	else if(management.equals(employeePosition)) {
-      		final Double salary = ReadAnualSalary();
+      		final Double salary = readAnnualSalary();
       		if (Double.compare(salary, inValidAmount) == 0) {
       			return;
       		}
@@ -248,7 +269,7 @@ public class PayrollController {
       		added = companyDataBaseAccess.add(new Management(employName,department,heiredDate, salary,departmentCode));
       	}
       	else {
-      		MessageOutput.appendText("Please select the valid Employeeyype. Full Time or Part Time or Management\n");
+      		MessageOutput.appendText("Please select the valid Employee type. Full Time or Part Time or Management\n");
       		return;
       	}
       	
@@ -260,7 +281,11 @@ public class PayrollController {
         }	
     }
 
-    @FXML
+	/**
+	 * The clear button will clear the name, annual salary, hourly work, rate, message output, and date.
+	 * @param event from the clear button.
+	 */
+	@FXML
     void clearButtonPressed(ActionEvent event) {
     	EmployeeName.clear();
     	AnualSalary.clear();
@@ -272,19 +297,24 @@ public class PayrollController {
     	SelectedDate.setValue(null);
     }
 
-    @FXML
+	/**
+	 * This will remove a valid employee from the database.
+	 * It validates by checking if a required field is empty, valid, or invalid.
+	 * @param event from the Remove Employee button.
+	 */
+	@FXML
     void removeEmployeeButtonPressed(ActionEvent event) {
     	if (companyDataBaseAccess.isDataBaseEmpty()) {
     		MessageOutput.appendText("Employee database is empty.\n");
             return;
         }
     	
-    	final String employName = ReadEmployeeName();
+    	final String employName = readEmployeeName();
     	if (employName.isEmpty()) {
     		return;
     	}
     	
-    	final String dateString = ReadHiredDate();
+    	final String dateString = readHiredDate();
     	if (dateString.isEmpty()) {
     		return;
     	}
@@ -309,41 +339,46 @@ public class PayrollController {
         }
     }
 
-    @FXML
+	/**
+	 * This sets the hours for a valid part time employees only.
+	 * It validates by checking if a required field is empty, valid, or invalid.
+	 * @param event from the Set Hours button.
+	 */
+	@FXML
     void setHoursButtonPressed(ActionEvent event) {
     	if (companyDataBaseAccess.isDataBaseEmpty()) {
     		MessageOutput.appendText("Employee database is empty.\n");
             return;
         }
     	
-    	final String employName = ReadEmployeeName();
+    	final String employName = readEmployeeName();
     	if (employName.isEmpty()) {
     		return;
     	}
     	
-    	final String dateString = ReadHiredDate();
+    	final String dateString = readHiredDate();
     	if (dateString.isEmpty()) {
     		return;
     	}
     	
-    	final Date heiredDate = new Date(dateString);
-        if (!heiredDate.isValid()) {
-        	MessageOutput.appendText(heiredDate.toString()+ " is not a valid date!\n");
+    	final Date hiredDate = new Date(dateString);
+        if (!hiredDate.isValid()) {
+        	MessageOutput.appendText(hiredDate.toString()+ " is not a valid date!\n");
             return;
         }
     	
         final RadioButton  SelectedDepartment = (RadioButton) Department.getSelectedToggle();
       	final String department = SelectedDepartment.getText();
     	
-      	final Double workhour = ReadWorkHour();
+      	final Double workHour = readWorkHour();
     	final Double inValidAmount = -1.0; 
-    	if (Double.compare(workhour, inValidAmount) == 0) {
+    	if (Double.compare(workHour, inValidAmount) == 0) {
   			return;
   		}
       	
       	
-    	Parttime pEmp = new Parttime(employName,department,heiredDate);
-        pEmp.setWorkHours(workhour);
+    	Parttime pEmp = new Parttime(employName,department, hiredDate);
+        pEmp.setWorkHours(workHour);
         boolean setHour = companyDataBaseAccess.setHours(pEmp);
         if (setHour)
         {
@@ -354,8 +389,13 @@ public class PayrollController {
         	MessageOutput.appendText("Employee does not exist.\n");
         }
     }
-    @FXML
-    void ComputePayment(ActionEvent event) {
+
+	/**
+	 * This computes the payment for all employees.
+	 * @param event from when compute is selected.
+	 */
+	@FXML
+    void computePayment(ActionEvent event) {
     	if (companyDataBaseAccess.isDataBaseEmpty()) {
     		OutputLog.appendText("Employee database is empty.\n");
             return;
@@ -364,9 +404,13 @@ public class PayrollController {
     	companyDataBaseAccess.processPayments();
     	OutputLog.appendText("Calutlation of employee payments is done.\n");
     }
-    
-    @FXML
-    void PrintAllEmployes(ActionEvent event) {
+
+	/**
+	 * This prints the earning statements for employees.
+	 * @param event from print all employees is selected.
+	 */
+	@FXML
+    void printAllEmployes(ActionEvent event) {
     	if (companyDataBaseAccess.isDataBaseEmpty()) {
     		OutputLog.appendText("Employee database is empty.\n");
             return;
@@ -378,8 +422,12 @@ public class PayrollController {
     	}
     }
 
-    @FXML
-    void PrintByDatehired(ActionEvent event) {
+	/**
+	 * This prints the earning statements of employees by date hired.
+	 * @param event from when the print by date is selected from the option.
+	 */
+	@FXML
+    void printByDateHired(ActionEvent event) {
     	if (companyDataBaseAccess.isDataBaseEmpty()) {
     		OutputLog.appendText("Employee database is empty.\n");
             return;
@@ -391,8 +439,12 @@ public class PayrollController {
     	}
     }
 
-    @FXML
-    void PrintByDepartment(ActionEvent event) {
+	/**
+	 * This prints the earning statements of employees by department.
+	 * @param event from when the print by department is selected from the option.
+	 */
+	@FXML
+    void printByDepartment(ActionEvent event) {
     	if (companyDataBaseAccess.isDataBaseEmpty()) {
     		OutputLog.appendText("Employee database is empty.\n");
             return;
@@ -402,20 +454,27 @@ public class PayrollController {
     		OutputLog.appendText(companyDataBaseAccess.printByDepartment(index)+"\n");
     	}
     }
-    
-    
-    @FXML
-    void ImportFile(ActionEvent event) {
+
+	/**
+	 * This imports files from the user.
+	 * @param event from if import is selected from the option.
+	 */
+	@FXML
+    void importFile(ActionEvent event) {
     	FileChooser chooser = new FileChooser();
     	chooser.setTitle("Open Source File for Import");
     	chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files","*.txt"),
     			new ExtensionFilter("All Files","*.*"));
     	Stage stage = new Stage();
     	File sourceFile = chooser.showOpenDialog(stage);
-    	WriteFileToDataBase(sourceFile);
+    	writeFileToDataBase(sourceFile);
     }
-    
-    private void WriteFileToDataBase(File sourceFile) {
+
+	/**
+	 * This imports the information in a file into the database.
+	 * @param sourceFile is a file object that represents a saved database
+	 */
+	private void writeFileToDataBase(File sourceFile) {
     	if (sourceFile == null) {
     		OutputLog.appendText("File is not selected. \n");
     		return;
@@ -463,7 +522,7 @@ public class PayrollController {
 
 		            if (!command.matches("(P|F|M)"))
 		            {
-		            	OutputLog.appendText("Unknow command is found in selected file. \n");
+		            	OutputLog.appendText("Unknown command is found in selected file. \n");
 		                continue;
 		            }
 		            
@@ -562,9 +621,13 @@ public class PayrollController {
 			OutputLog.appendText("Exception is generated while reading file. \n");
 		}
     }
-    
-    @FXML
-    void ExportFile(ActionEvent event) {
+
+	/**
+	 * This exports the database to a file on the user's local.
+	 * @param event from if export is selected from the option.
+	 */
+	@FXML
+    void exportFile(ActionEvent event) {
     	FileChooser chooser = new FileChooser();
     	chooser.setTitle("Save Target File for Export");
     	chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files","*.txt"),
@@ -589,10 +652,14 @@ public class PayrollController {
     			return;
     		}
     	}
-    	WriteDateBaseToFile(targetFile.getPath());
+    	writeDateBaseToFile(targetFile.getPath());
     }
 
-    private void WriteDateBaseToFile(String filePath) {      
+	/**
+	 * This copies the information from the database to a file.
+	 * @param filePath is the user selected local path as to where to write the file to.
+	 */
+	private void writeDateBaseToFile(String filePath) {
         PrintWriter fw = null;
         BufferedWriter bw  = null;
         try {
@@ -623,29 +690,37 @@ public class PayrollController {
     	}
     }
 
-    private String ReadEmployeeName() {
+	/**
+	 * Reads the name from the Employee Text Field into the program.
+	 * @return Employee name from Text Field, if valid; otherwise returns an empty string
+	 */
+	private String readEmployeeName() {
     	String returnName = "";
     	final String name = EmployeeName.getText();
     	
     	if (name.isEmpty()) {
-    		MessageOutput.appendText("Please eneter the Employee Name.\n");
+    		MessageOutput.appendText("Please enter the Employee Name.\n");
     		return returnName;
     	}
     	
-    	if (!name.matches("^[a-zA-Z\s]*$")) {
+    	if (!name.matches("^[a-zA-Z\\s]*$")) {
     		MessageOutput.appendText("Employee name should contain a-z or A-Z.\n");
     		return returnName;
     	}
     	
-    	if (name.matches("^[\s]*$")) {
+    	if (name.matches("^[\\s]*$")) {
     		MessageOutput.appendText("Employee name should not contain only white space.\n");
     		return returnName;
     	}
     	returnName = name;
     	return returnName;
     }
-   
-    private String ReadHiredDate() {
+
+	/**
+	 * Reads the date from the Date Field into the program.
+	 * @return date from Date Field, if valid; otherwise returns an empty string
+	 */
+	private String readHiredDate() {
     	String returnDate = "";
     	final TextField dateEditor = SelectedDate.getEditor();
     	final String dateValue = dateEditor.getText();
@@ -655,7 +730,7 @@ public class PayrollController {
     		return returnDate;
     	}
     	
-    	if (dateValue.matches("^[\s]*$")) {
+    	if (dateValue.matches("^[\\s]*$")) {
     		MessageOutput.appendText("Date should not contain only white space.\n");
     		return returnDate;
     	}
@@ -673,8 +748,12 @@ public class PayrollController {
       	returnDate = dateValue;
       	return returnDate;
     }
-    
-    private Double ReadAnualSalary() {
+
+	/**
+	 * Reads the annual salary  from the Annual Salary Field into the program.
+	 * @return  Annual Salary from Annual Salary Text Field, if valid; otherwise returns -1.0
+	 */
+	private Double readAnnualSalary() {
     	Double returnSalary = -1.0;
     	final String amount = AnualSalary.getText();
     	if (amount.isEmpty()) {
@@ -682,7 +761,7 @@ public class PayrollController {
     		return returnSalary;
     	}
     	
-    	if (amount.matches("^[\s]*$")) {
+    	if (amount.matches("^[\\s]*$")) {
     		MessageOutput.appendText("Salary should not contain only white space.\n");
     		return returnSalary;
     	}
@@ -693,7 +772,7 @@ public class PayrollController {
     	}
     	
   		if (!amount.matches("-?\\d{1,15}\\.?\\d{0,10}?$")) {
-    		MessageOutput.appendText("AnualSalary should contain only digits with single decimal point.\n");
+    		MessageOutput.appendText("Annual Salary should contain only digits with single decimal point.\n");
     		return returnSalary;
     	}
   		final Double salary = Double.parseDouble(amount);
@@ -706,8 +785,12 @@ public class PayrollController {
   		returnSalary = salary;
   		return returnSalary;
     }
-    
-    private Double ReadRate() {
+
+	/**
+	 * Reads the rate from the Rate Field into the program.
+	 * @return rate from rate Text Field, if valid; otherwise returns -1.0
+	 */
+	private Double readRate() {
     	Double returnRate = -1.0;
     	final String amount = Rate.getText();
     	if (amount.isEmpty()) {
@@ -715,7 +798,7 @@ public class PayrollController {
     		return returnRate;
     	}
     	
-    	if (amount.matches("^[\s]*$")) {
+    	if (amount.matches("^[\\s]*$")) {
     		MessageOutput.appendText("Rate should not contain only white space.\n");
     		return returnRate;
     	}
@@ -741,8 +824,12 @@ public class PayrollController {
   		returnRate = salary;
   		return returnRate;
     }
-    
-    private Double ReadWorkHour() {
+
+	/**
+	 * Reads the work hours from the Work Hours Field into the program.
+	 * @return work hours from Work Hours Text Field, if valid; otherwise returns -1.0
+	 */
+	private Double readWorkHour() {
     	Double returnHour = -1.0;
     	final String workHour = HourlyWork.getText();
     	if (workHour.isEmpty()) {
@@ -750,7 +837,7 @@ public class PayrollController {
     		return returnHour;
     	}
     	
-    	if (workHour.matches("^[\s]*$")) {
+    	if (workHour.matches("^[\\s]*$")) {
     		MessageOutput.appendText("WorkHour should not contain only white space.\n");
     		return returnHour;
     	}

@@ -63,12 +63,12 @@
                                     <RadioButton fx:id="ECERadio" mnemonicParsing="false" text="ECE" toggleGroup="$Department" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Hired" wrappingWidth="65.33672714233398" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                     <DatePicker fx:id="SelectedDate" prefHeight="26.0" prefWidth="257.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2" />
-                                    <RadioButton fx:id="FullTimeRadio" mnemonicParsing="false" onAction="#FullTimeRadioSelected" selected="true" text="Full Time" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                    <RadioButton fx:id="FullTimeRadio" mnemonicParsing="false" onAction="#fullTimeRadioSelected" selected="true" text="Full Time" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="EmployeeType" />
                                        </toggleGroup></RadioButton>
-                                    <RadioButton fx:id="PartTimeRadio" mnemonicParsing="false" onAction="#PartTimeRadioSelected" text="Part Time" toggleGroup="$EmployeeType" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                    <RadioButton fx:id="ManagementRadio" mnemonicParsing="false" onAction="#ManagementRadioSelected" prefHeight="18.0" prefWidth="99.0" text="Management" toggleGroup="$EmployeeType" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <RadioButton fx:id="PartTimeRadio" mnemonicParsing="false" onAction="#partTimeRadioSelected" text="Part Time" toggleGroup="$EmployeeType" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <RadioButton fx:id="ManagementRadio" mnemonicParsing="false" onAction="#managementRadioSelected" prefHeight="18.0" prefWidth="99.0" text="Management" toggleGroup="$EmployeeType" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                     <Text fx:id="AnualSalaryText" strokeType="OUTSIDE" strokeWidth="0.0" text="Anual Salary" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                                     <TextField fx:id="AnualSalary" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4" />
                                     <Text fx:id="HourlyWorkText" disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Hours Worked" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
@@ -120,20 +120,20 @@
                                 <menus>
                                   <Menu mnemonicParsing="false" text="File">
                                     <items>
-                                      <MenuItem fx:id="ImportItem" mnemonicParsing="false" onAction="#ImportFile" text="Import" />
-                                      <MenuItem fx:id="ExportItem" mnemonicParsing="false" onAction="#ExportFile" text="Export" />
+                                      <MenuItem fx:id="ImportItem" mnemonicParsing="false" onAction="#importFile" text="Import" />
+                                      <MenuItem fx:id="ExportItem" mnemonicParsing="false" onAction="#exportFile" text="Export" />
                                     </items>
                                   </Menu>
                                   <Menu mnemonicParsing="false" text="Print">
                                     <items>
-                                      <MenuItem fx:id="AllEmployePrintItem" mnemonicParsing="false" onAction="#PrintAllEmployes" text="All Employee" />
-                                      <MenuItem fx:id="ByDepartmentPrintItem" mnemonicParsing="false" onAction="#PrintByDepartment" text="By Department" />
-                                      <MenuItem fx:id="ByDateHiredItem" mnemonicParsing="false" onAction="#PrintByDatehired" text="By Date Hired" />
+                                      <MenuItem fx:id="AllEmployePrintItem" mnemonicParsing="false" onAction="#printAllEmployes" text="All Employee" />
+                                      <MenuItem fx:id="ByDepartmentPrintItem" mnemonicParsing="false" onAction="#printByDepartment" text="By Department" />
+                                      <MenuItem fx:id="ByDateHiredItem" mnemonicParsing="false" onAction="#printByDateHired" text="By Date Hired" />
                                     </items>
                                   </Menu>
                                   <Menu mnemonicParsing="false" text="Payment">
                                     <items>
-                                      <MenuItem fx:id="ComputeItem" mnemonicParsing="false" onAction="#ComputePayment" text="Compute" />
+                                      <MenuItem fx:id="ComputeItem" mnemonicParsing="false" onAction="#computePayment" text="Compute" />
                                     </items>
                                   </Menu>
                                 </menus>
