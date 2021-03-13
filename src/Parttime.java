@@ -79,7 +79,7 @@ public class Parttime extends Employee
     @Override
     public void calculatePayment()
     {
-        double regularPayRateHour = 80;
+        final double regularPayRateHour = 80;
         if (hoursWork <= regularPayRateHour)
         {
             super.setPayment(hourlyRate * hoursWork);
@@ -105,7 +105,7 @@ public class Parttime extends Employee
     public boolean setWorkHours(double workingHours)
     {
         boolean set = false;
-        double MaxHour = 100;
+        final double MaxHour = 100;
         if (workingHours <= MaxHour)
         {
             hoursWork = workingHours;

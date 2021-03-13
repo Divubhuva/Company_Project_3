@@ -87,7 +87,7 @@ public class Company
     public boolean add(Employee employee)
     {
         boolean empIsAdded = false;
-        int notFoundIndex = -1;
+        final int notFoundIndex = -1;
         if (find(employee) != notFoundIndex)
         {
             return empIsAdded;
@@ -149,7 +149,11 @@ public class Company
         {
             return workingHourSet;
         }
-
+        
+        if(!(emplist[empIndex] instanceof Parttime)) {
+        	return workingHourSet;
+        }
+        
         Parttime temp = (Parttime)emplist[empIndex];
         workingHourSet = temp.setWorkHours(((Parttime)employee).getWorkHours());
 
